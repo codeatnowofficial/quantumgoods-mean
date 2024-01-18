@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 
 
 
-mongoose.connect('mongodb+srv://codeatnow:codeatnow@quantumcluster.uadmf1p.mongodb.net/QuantumGoods?retryWrites=true&w=majority').then(() => {
+mongoose.connect('mongodb+srv://codeatnow:codeatnow@cluster0.lxqo5rt.mongodb.net/?retryWrites=true&w=majority').then(() => {
     console.log("connected succesfully")
     app.listen(4000, () => {
         console.log('server started at 4000')
