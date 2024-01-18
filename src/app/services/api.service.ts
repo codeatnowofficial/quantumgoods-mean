@@ -19,88 +19,88 @@ export class ApiService {
   constructor(private http: HttpClient, private router: Router) {
   }
   async signup(data: any) {
-    const status = await this.http.post(`{this.url}signup`, data).toPromise()
+    const status = await this.http.post(`${this.url}signup`, data).toPromise()
     console.log(20,status)
     return JSON.stringify(status)
   }
   async userslogin(data:any){
     console.log(20,data)
-    const status = await this.http.post('http://localhost:4000/getusers', data).toPromise()
+    const status = await this.http.post(`${this.url}getusers`, data).toPromise()
     console.log(22,status)
     return JSON.stringify(status)
   }
   async getcategories(){
-    const status: any = await this.http.get('http://localhost:4000/categories',{ headers:this.headers }).toPromise()
+    const status: any = await this.http.get(`${this.url}categories`,{ headers:this.headers }).toPromise()
     console.log(status)
     return status
   }
 
   addProduct(data:any): Observable<any>{
     console.log(20,data)
-    return this.http.post('http://localhost:4000/addproduct', data,{headers:new HttpHeaders({
+    return this.http.post(`${this.url}addproduct`, data,{headers:new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     })})
     // console.log(22,status)
     // return JSON.stringify(status)
   }
   getAllProduct(): Observable<any>{
-    return this.http.get('http://localhost:4000/allproduct',{ headers:this.headers })
+    return this.http.get(`${this.url}allproduct`,{ headers:this.headers })
     // console.log(22,status)
     // return JSON.stringify(status)
   }
   addCategories(data:any):Observable<any>{
-    return this.http.post('http://localhost:4000/addcategories',data,{ headers:this.headers })
+    return this.http.post(`${this.url}addcategories`,data,{ headers:this.headers })
   }
   async removecategories(data:any){
-    return await lastValueFrom(this.http.post('http://localhost:4000/removecategories',{id:data},{ headers:this.headers }))
+    return await lastValueFrom(this.http.post(`${this.url}removecategories`,{id:data},{ headers:this.headers }))
   }
   async getCategoryById(data:any){
-    const status=  await lastValueFrom(this.http.post('http://localhost:4000/getcategorybyid',{id:data},{ headers:this.headers }))
+    const status=  await lastValueFrom(this.http.post(`${this.url}getcategorybyid`,{id:data},{ headers:this.headers }))
     return status
   }
   async updateCategory(data:any){
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/updatecategory',data,{ headers:this.headers }))
+    const status = await lastValueFrom(this.http.post(`${this.url}updatecategory`,data,{ headers:this.headers }))
     return status
   }
   async addsubcategory(data:any){
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/addsubcategory',data,{ headers:this.headers }))
+    const status = await lastValueFrom(this.http.post(`${this.url}addsubcategory`,data,{ headers:this.headers }))
     return status
   }
   async getsubcategoryFromMainCategory(data:any){
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/getsubcategoryFromCategory',{category:data},{ headers:this.headers }))
+    const status = await lastValueFrom(this.http.post(`${this.url}getsubcategoryFromCategory`,{category:data},{ headers:this.headers }))
     return status
   }
   async getallsub(){
-    const status = await lastValueFrom(this.http.get('http://localhost:4000/getallsub',{ headers:this.headers }))
+    const status = await lastValueFrom(this.http.get(`${this.url}getallsub`,{ headers:this.headers }))
     return status
   }
   async removesubcategory(data:any){
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/removesubcategory',{_id:data},{ headers:this.headers }))
+    const status = await lastValueFrom(this.http.post(`${this.url}removesubcategory`,{_id:data},{ headers:this.headers }))
     return status
   }
   async updatesub(data:any){
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/updatesub',data,{ headers:this.headers }))
+    const status = await lastValueFrom(this.http.post(`${this.url}updatesub`,data,{ headers:this.headers }))
     return status
   }
   async getsubFromId(data:any){
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/getsubcategoriesfromid',{_id:data},{ headers:this.headers }))
+    const status = await lastValueFrom(this.http.post(`${this.url}getsubcategoriesfromid`,{_id:data},{ headers:this.headers }))
     return status
   }
   async getsubcategorybyname(data:any){
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/getsubcategoryfromname',{name:data},{ headers:this.headers }))
+    const status = await lastValueFrom(this.http.post(`${this.url}getsubcategoryfromname`,{name:data},{ headers:this.headers }))
     return status
   }
   async getproductsbyid(data:any){
     console.log(data)
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/getproductsbyid',{_id:data},{ headers:this.headers }))
+    const status = await lastValueFrom(this.http.post(`${this.url}getproductsbyid`,{_id:data},{ headers:this.headers }))
     return status
   }
   async forgotpassword(data:any){
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/forgotpassword',{email:data},{headers:this.headers}))
+    const status = await lastValueFrom(this.http.post(`${this.url}forgotpassword`,{email:data},{headers:this.headers}))
     return status
   }
   async forgotpasswordupdate(data:any){
-    const status = await lastValueFrom(this.http.post('http://localhost:4000/forgotpasswordupdate',data,{headers:this.headers}))
+    const status = await lastValueFrom(this.http.post(`${this.url}forgotpasswordupdate`,data,{headers:this.headers}))
     return status
   }
 } 
