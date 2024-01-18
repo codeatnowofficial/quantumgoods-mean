@@ -15,6 +15,7 @@ export class HeroComponent {
   autommativeProducts: any
   houseHoldProducts: any
   obj: any = {}
+  loading:boolean = true
 
   constructor(private http: ApiService) {
     this.callAll()
@@ -31,9 +32,9 @@ export class HeroComponent {
       if (cat.includes(ele.product_category)) {
         this.obj[ele.product_category].push(ele)
       }
+      this.loading=false
     }))
     )
-
   }
 
   async getcategories() {

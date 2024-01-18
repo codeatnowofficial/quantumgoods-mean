@@ -18,6 +18,7 @@ export class LoginComponent {
   msg = ""
   status: any
   loginTextALert = false
+  loading:boolean = false
   
   constructor(private form: FormBuilder, private service: ApiService, private router: Router) {
     this.loginform = form.group({
@@ -39,12 +40,14 @@ export class LoginComponent {
   }
 
   async login() {
+    this.loading=true
     console.log(this.loginform.value)
     this.status = await this.service.userslogin(this.loginform.value)
     let data = JSON.parse(this.status)
     console.log(data.status)
     if(data.status == "password not match"){
       console.log("password not match")
+      this.loading=false
       this.loginTextALert = false
       this.close = true
       this.msg = ""
@@ -52,6 +55,7 @@ export class LoginComponent {
     }
     if (data.status == 0) {
       this.loginTextALert = true
+      this.loading=false
       localStorage.setItem("login", "false")
       this.close = true
       this.msg = ""
@@ -62,11 +66,12 @@ export class LoginComponent {
     if(data.status == 1) {
       this.loginTextALert=false
       localStorage.setItem("login", "true")
-      this.router.navigate(['/dashboard'])
+      this.loading=false
       if(data.token){
         localStorage.setItem("token",data.token)
         localStorage.setItem("user",data.userid)
       }
+      this.router.navigate(['/dashboard'])
     } 
   }
 }

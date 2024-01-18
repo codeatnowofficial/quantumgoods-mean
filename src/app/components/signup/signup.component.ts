@@ -14,6 +14,8 @@ export class SignupComponent {
   status=""
   msg=""
   close=true
+  loading:boolean = false
+  bpassshow:boolean=false
   constructor(private form:FormBuilder, private service:ApiService, private router:Router){
     this.signupform = form.group({
       username: ['',[Validators.minLength(2),Validators.required]],
@@ -21,22 +23,35 @@ export class SignupComponent {
       password:['',[Validators.required,Validators.minLength(5)]]
     })
   }
+
+  show(pass:any){
+    this.bpassshow = !this.bpassshow
+    if(this.bpassshow){
+      pass.type='text'
+    }else{
+      pass.type='password'
+    }
+  }
   
   async signup(){
+    this.loading=true
     this.status = await this.service.signup(this.signupform.value)
     let data = JSON.parse(this.status)
     console.log(data.status)
     if(data.status == "email exist"){
+      this.loading = false
       this.close = true
       this.msg = ""
       this.msg = "Email Already Exist please check..."
     }
     if(data.status == 0){
+      this.loading=false
       this.close = true
       this.msg = ""
       this.msg = "Something went wrong please try again..."
     }
     if(data.status == 1){
+      this.loading=false
       this.router.navigate(['/'])
     }
     

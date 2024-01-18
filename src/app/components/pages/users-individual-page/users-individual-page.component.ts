@@ -9,12 +9,15 @@ import { ApiService } from 'src/app/services/api.service';
 export class UsersIndividualPageComponent {
   products:any
   id = localStorage.getItem('user')
+  loading:boolean = true
   constructor(private http:ApiService){
     console.log(this.id)
     this.getproducts()
   }
   async getproducts(){
     this.products = await this.http.getproductsbyid(this.id)
-    console.log(this.products)
+    if(this.products){
+      this.loading=false
+    }
   }
 }
