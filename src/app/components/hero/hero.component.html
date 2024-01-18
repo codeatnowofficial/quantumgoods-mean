@@ -7,7 +7,7 @@
             <div class="scrollRemove flex p-2 gap-4 overflow-x-scroll text-gray-900">
                 <div *ngFor="let computerProduct of obj[category.category]" class="">
                     <img src={{computerProduct.product_image}} alt={{computerProduct.product_image}}
-                        class="min-w-96 w-96 min-h-52 h-52 bg-transparent object-contain object-center">
+                        class="min-w-96 w-96 min-h-52 h-52 bg-transparent object-fill object-center">
                     <div class="relative px-4 hover:px-1.5 transition-all ease-linear hover:-mt-5 -mt-16">
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <div class="flex gap-1 items-baseline">
