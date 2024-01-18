@@ -10,6 +10,7 @@ export class ApiService {
   private _options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   checked: any
   allproduct:any
+  url:string = "https://quantumgoods-o8mj.onrender.com/"
   token = localStorage.getItem("token")
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -18,7 +19,7 @@ export class ApiService {
   constructor(private http: HttpClient, private router: Router) {
   }
   async signup(data: any) {
-    const status = await this.http.post('http://localhost:4000/signup', data).toPromise()
+    const status = await this.http.post(`{this.url}signup`, data).toPromise()
     console.log(20,status)
     return JSON.stringify(status)
   }
